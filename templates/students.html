@@ -1,0 +1,165 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <title>Saved Students</title>
+
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css"
+          rel="stylesheet">
+</head>
+
+<body>
+
+<div class="container-fluid mt-4">
+
+    <div class="d-flex justify-content-between align-items-center mb-4">
+
+        <h2>📚 Saved Students</h2>
+
+        <a href="{{ url_for('home') }}" class="btn btn-secondary">
+            🏠 Home
+        </a>
+
+    </div>
+
+
+    {% if students %}
+
+    <div class="table-responsive">
+
+        <table class="table table-bordered table-striped table-hover">
+
+            <thead class="table-dark">
+
+                <tr>
+
+                    <th>S.No</th>
+                    <th>Register No</th>
+                    <th>Student Name</th>
+                    <th>Father Name</th>
+                    <th>Father Contact</th>
+                    <th>Mother Name</th>
+                    <th>Mother Contact</th>
+                    <th>Gender</th>
+                    <th>DOB</th>
+                    <th>Student Contact</th>
+                    <th>Taluk</th>
+                    <th>District</th>
+                    <th>Caste</th>
+                    <th>Community</th>
+                    <th>12th Mark</th>
+                    <th>Medium</th>
+                    <th>Pudhumai Penn</th>
+                    <th>Action</th>
+
+                </tr>
+
+            </thead>
+
+
+            <tbody>
+
+            {% for student in students %}
+
+                <tr>
+
+                    <td>{{ loop.index }}</td>
+
+                    <td>
+                        <strong>{{ student['register_no'] }}</strong>
+                    </td>
+
+                    <td>{{ student['student_name'] }}</td>
+
+                    <td>{{ student['father_name'] }}</td>
+
+                    <td>{{ student['father_contact'] }}</td>
+
+                    <td>{{ student['mother_name'] }}</td>
+
+                    <td>{{ student['mother_contact'] }}</td>
+
+                    <td>{{ student['gender'] }}</td>
+
+                    <td>{{ student['dob'] }}</td>
+
+                    <td>{{ student['student_contact'] }}</td>
+
+                    <td>{{ student['taluk'] }}</td>
+
+                    <td>{{ student['district'] }}</td>
+
+                    <td>{{ student['caste'] }}</td>
+
+                    <td>{{ student['community'] }}</td>
+
+                    <td>{{ student['twelth_mark'] }}</td>
+
+                    <td>{{ student['medium'] }}</td>
+
+                    <td>{{ student['pudhumai_penn'] }}</td>
+
+
+                    <td style="min-width: 240px;">
+
+                        <!-- VIEW -->
+                        <form action="{{ url_for('search') }}"
+                              method="POST"
+                              style="display:inline;">
+
+                            <input type="hidden"
+                                   name="register_no"
+                                   value="{{ student['register_no'] }}">
+
+                            <button type="submit"
+                                    class="btn btn-primary btn-sm">
+                                👁 View
+                            </button>
+
+                        </form>
+
+
+                        <!-- EDIT -->
+                        <a href="{{ url_for('edit_student', student_id=student['id']) }}"
+                           class="btn btn-warning btn-sm">
+
+                            ✏️ Edit
+
+                        </a>
+
+
+                        <!-- MARKS -->
+                        <a href="{{ url_for('academic_marks', register_no=student['register_no']) }}"
+                           class="btn btn-success btn-sm">
+
+                            📚 Marks
+
+                        </a>
+
+                    </td>
+
+                </tr>
+
+            {% endfor %}
+
+            </tbody>
+
+        </table>
+
+    </div>
+
+    {% else %}
+
+        <div class="alert alert-info">
+            No students saved yet.
+        </div>
+
+    {% endif %}
+
+</div>
+
+</body>
+</html>

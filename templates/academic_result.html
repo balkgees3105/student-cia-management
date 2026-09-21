@@ -1,0 +1,195 @@
+<!DOCTYPE html>
+
+<html lang="en">
+
+<head>
+
+```
+<meta charset="UTF-8">
+
+<meta name="viewport" content="width=device-width, initial-scale=1">
+
+<title>Academic Result</title>
+
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css"
+      rel="stylesheet">
+```
+
+</head>
+
+<body>
+
+<div class="container mt-4">
+
+```
+<div class="card shadow">
+
+    <div class="card-header bg-success text-white">
+
+        <h3>
+            📚 Academic Result
+        </h3>
+
+    </div>
+
+    <div class="card-body">
+
+        <div class="alert alert-info">
+
+            <strong>Register Number:</strong>
+            {{ student['register_no'] }}
+
+            <br>
+
+            <strong>Student Name:</strong>
+            {{ student['student_name'] }}
+
+        </div>
+
+
+        {% if academic_marks %}
+
+            {% for semester in range(1, 7) %}
+
+                {% set semester_marks = academic_marks
+                |selectattr("semester", "equalto", semester)
+                |list %}
+
+
+                {% if semester_marks %}
+
+                    <h4 class="mt-4 mb-3">
+
+                        📖 Semester {{ semester }}
+
+                    </h4>
+
+
+                    <div class="table-responsive">
+
+                        <table class="table table-bordered table-striped">
+
+                            <thead class="table-dark">
+
+                                <tr>
+
+                                    <th>S.No</th>
+                                    <th>Subject Code</th>
+                                    <th>Subject Name</th>
+                                    <th>CIA-1</th>
+                                    <th>CIA-2</th>
+                                    <th>Model</th>
+                                    <th>Attendance %</th>
+                                    <th>Semester Exam</th>
+                                    <th>Action</th>
+
+                                </tr>
+
+                            </thead>
+
+
+                            <tbody>
+
+                            {% for mark in semester_marks %}
+
+                                <tr>
+
+                                    <td>
+                                        {{ loop.index }}
+                                    </td>
+
+                                    <td>
+                                        {{ mark['subject_code'] }}
+                                    </td>
+
+                                    <td>
+                                        {{ mark['subject_name'] }}
+                                    </td>
+
+                                    <td>
+                                        {{ mark['cia1'] }}
+                                    </td>
+
+                                    <td>
+                                        {{ mark['cia2'] }}
+                                    </td>
+
+                                    <td>
+                                        {{ mark['model_mark'] }}
+                                    </td>
+
+                                    <td>
+                                        {{ mark['attendance'] }}%
+                                    </td>
+
+                                    <td>
+                                        {{ mark['semester_exam'] }}
+                                    </td>
+
+                                    <td>
+
+                                        <a href="{{ url_for('edit_academic_marks', mark_id=mark['id']) }}"
+                                           class="btn btn-warning btn-sm">
+
+                                            ✏️ Edit
+
+                                        </a>
+
+                                    </td>
+
+                                </tr>
+
+                            {% endfor %}
+
+                            </tbody>
+
+                        </table>
+
+                    </div>
+
+                {% endif %}
+
+            {% endfor %}
+
+
+        {% else %}
+
+            <div class="alert alert-warning">
+
+                No marks available.
+
+            </div>
+
+        {% endif %}
+
+
+        <div class="mt-4">
+
+            <a href="{{ url_for('students') }}"
+               class="btn btn-secondary">
+
+                ↩️ Back to Saved Students
+
+            </a>
+
+
+            <a href="{{ url_for('academic_marks',
+                                register_no=student['register_no']) }}"
+               class="btn btn-success">
+
+                ➕ Add Marks
+
+            </a>
+
+        </div>
+
+    </div>
+
+</div>
+```
+
+</div>
+
+</body>
+
+</html>

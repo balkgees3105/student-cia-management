@@ -1,0 +1,510 @@
+<!DOCTYPE html>
+
+<html lang="en">
+
+<head>
+
+```
+<meta charset="UTF-8">
+
+<meta name="viewport"
+      content="width=device-width, initial-scale=1">
+
+<title>Academic Marks</title>
+
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css"
+      rel="stylesheet">
+```
+
+</head>
+
+<body class="bg-light">
+
+<div class="container mt-5 mb-5">
+
+```
+<div class="card shadow">
+
+
+    <!-- HEADER -->
+
+    <div class="card-header bg-success text-white">
+
+        <h3 class="mb-0">
+            📚 Academic Marks Entry
+        </h3>
+
+    </div>
+
+
+    <div class="card-body">
+
+
+        <!-- STUDENT INFORMATION -->
+
+        <div class="alert alert-info">
+
+            <h5>Student Information</h5>
+
+            <p class="mb-1">
+
+                <strong>Register Number:</strong>
+
+                {{ student['register_no'] }}
+
+            </p>
+
+
+            <p class="mb-0">
+
+                <strong>Student Name:</strong>
+
+                {{ student['student_name'] }}
+
+            </p>
+
+        </div>
+
+
+
+        <!-- MARKS ENTRY -->
+
+        <h5 class="mb-3">
+
+            📝 Enter Academic Marks
+
+        </h5>
+
+
+        <form action="{{ url_for('save_academic_marks') }}"
+              method="POST">
+
+
+            <input type="hidden"
+                   name="register_no"
+                   value="{{ student['register_no'] }}">
+
+
+
+            <!-- SEMESTER -->
+
+            <div class="mb-3">
+
+                <label class="form-label">
+
+                    <strong>Semester</strong>
+
+                </label>
+
+
+                <select name="semester"
+                        class="form-select"
+                        required>
+
+                    <option value="">
+                        Select Semester
+                    </option>
+
+                    <option value="1">
+                        Semester 1
+                    </option>
+
+                    <option value="2">
+                        Semester 2
+                    </option>
+
+                    <option value="3">
+                        Semester 3
+                    </option>
+
+                    <option value="4">
+                        Semester 4
+                    </option>
+
+                    <option value="5">
+                        Semester 5
+                    </option>
+
+                    <option value="6">
+                        Semester 6
+                    </option>
+
+                </select>
+
+            </div>
+
+
+
+            <!-- SUBJECT CODE -->
+
+            <div class="mb-3">
+
+                <label class="form-label">
+
+                    <strong>Subject Code</strong>
+
+                </label>
+
+
+                <input type="text"
+                       name="subject_code"
+                       class="form-control"
+                       placeholder="Example: 24AIM101"
+                       required>
+
+            </div>
+
+
+
+            <!-- SUBJECT NAME -->
+
+            <div class="mb-3">
+
+                <label class="form-label">
+
+                    <strong>Subject Name</strong>
+
+                </label>
+
+
+                <input type="text"
+                       name="subject_name"
+                       class="form-control"
+                       placeholder="Example: Python Programming"
+                       required>
+
+            </div>
+
+
+
+            <!-- MARKS -->
+
+            <div class="row">
+
+
+                <!-- CIA 1 -->
+
+                <div class="col-md-4 mb-3">
+
+                    <label class="form-label">
+
+                        <strong>CIA-1 Mark</strong>
+
+                    </label>
+
+
+                    <input type="number"
+                           name="cia1"
+                           class="form-control"
+                           min="0"
+                           max="100"
+                           placeholder="Enter CIA-1">
+
+                </div>
+
+
+
+                <!-- CIA 2 -->
+
+                <div class="col-md-4 mb-3">
+
+                    <label class="form-label">
+
+                        <strong>CIA-2 Mark</strong>
+
+                    </label>
+
+
+                    <input type="number"
+                           name="cia2"
+                           class="form-control"
+                           min="0"
+                           max="100"
+                           placeholder="Enter CIA-2">
+
+                </div>
+
+
+
+                <!-- MODEL -->
+
+                <div class="col-md-4 mb-3">
+
+                    <label class="form-label">
+
+                        <strong>Model Exam Mark</strong>
+
+                    </label>
+
+
+                    <input type="number"
+                           name="model_mark"
+                           class="form-control"
+                           min="0"
+                           max="100"
+                           placeholder="Enter Model Mark">
+
+                </div>
+
+
+
+                <!-- ATTENDANCE -->
+
+                <div class="col-md-6 mb-3">
+
+                    <label class="form-label">
+
+                        <strong>Attendance Percentage</strong>
+
+                    </label>
+
+
+                    <input type="number"
+                           name="attendance"
+                           class="form-control"
+                           min="0"
+                           max="100"
+                           step="0.01"
+                           placeholder="Example: 92">
+
+                </div>
+
+
+
+                <!-- SEMESTER EXAM -->
+
+                <div class="col-md-6 mb-3">
+
+                    <label class="form-label">
+
+                        <strong>Semester Exam Mark</strong>
+
+                    </label>
+
+
+                    <input type="number"
+                           name="semester_exam"
+                           class="form-control"
+                           min="0"
+                           max="100"
+                           placeholder="Enter Semester Exam Mark">
+
+                </div>
+
+
+            </div>
+
+
+
+            <hr>
+
+
+
+            <!-- SAVE BUTTON -->
+
+            <div class="d-flex justify-content-between">
+
+                <a href="{{ url_for('students') }}"
+                   class="btn btn-secondary">
+
+                    ↩️ Back
+
+                </a>
+
+
+                <button type="submit"
+                        class="btn btn-success btn-lg">
+
+                    💾 SAVE MARKS
+
+                </button>
+
+            </div>
+
+
+        </form>
+
+
+
+        <!-- ========================================= -->
+        <!-- SAVED ACADEMIC MARKS -->
+        <!-- ========================================= -->
+
+        <hr class="my-5">
+
+
+        <h4 class="mb-3">
+
+            📋 Saved Academic Marks
+
+        </h4>
+
+
+        {% if marks %}
+
+
+        <div class="table-responsive">
+
+
+            <table class="table table-bordered table-striped table-hover">
+
+
+                <thead class="table-dark">
+
+                    <tr>
+
+                        <th>Semester</th>
+
+                        <th>Subject Code</th>
+
+                        <th>Subject Name</th>
+
+                        <th>CIA-1</th>
+
+                        <th>CIA-2</th>
+
+                        <th>Model</th>
+
+                        <th>Attendance</th>
+
+                        <th>Semester Exam</th>
+
+                        <th>Action</th>
+
+                    </tr>
+
+                </thead>
+
+
+                <tbody>
+
+
+                {% for mark in marks %}
+
+
+                    <tr>
+
+
+                        <td>
+
+                            Semester {{ mark['semester'] }}
+
+                        </td>
+
+
+                        <td>
+
+                            {{ mark['subject_code'] }}
+
+                        </td>
+
+
+                        <td>
+
+                            {{ mark['subject_name'] }}
+
+                        </td>
+
+
+                        <td>
+
+                            {{ mark['cia1'] }}
+
+                        </td>
+
+
+                        <td>
+
+                            {{ mark['cia2'] }}
+
+                        </td>
+
+
+                        <td>
+
+                            {{ mark['model_mark'] }}
+
+                        </td>
+
+
+                        <td>
+
+                            {{ mark['attendance'] }}%
+
+                        </td>
+
+
+                        <td>
+
+                            {{ mark['semester_exam'] }}
+
+                        </td>
+
+
+                        <!-- EDIT BUTTON -->
+
+                        <td>
+
+                            <a href="/edit_academic_marks/{{ mark['id'] }}"
+                               class="btn btn-warning btn-sm">
+
+                                ✏️ Edit
+
+                            </a>
+
+                        </td>
+
+
+                    </tr>
+
+
+                {% endfor %}
+
+
+                </tbody>
+
+
+            </table>
+
+
+        </div>
+
+
+        {% else %}
+
+
+        <div class="alert alert-warning">
+
+            No academic marks have been saved for this student yet.
+
+        </div>
+
+
+        {% endif %}
+
+
+
+        <!-- VIEW RESULT -->
+
+        <div class="text-center mt-4">
+
+            <a href="/view_marks/{{ student['register_no'] }}"
+               class="btn btn-primary">
+
+                📊 View Academic Result
+
+            </a>
+
+        </div>
+
+
+    </div>
+
+</div>
+```
+
+</div>
+
+</body>
+
+</html>

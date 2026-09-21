@@ -1,0 +1,277 @@
+<!DOCTYPE html>
+
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+```
+<title>Edit Student</title>
+
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css"
+      rel="stylesheet">
+```
+
+</head>
+
+<body class="bg-light">
+
+<div class="container py-4">
+
+```
+<div class="card shadow">
+
+    <!-- HEADER -->
+    <div class="card-header bg-warning text-dark">
+        <h3 class="mb-0">✏️ Edit Student Information</h3>
+    </div>
+
+    <div class="card-body">
+
+        <!-- FORM -->
+        <form action="{{ url_for('update_student', student_id=student['id']) }}"
+              method="POST">
+
+            <div class="row">
+
+                <!-- REGISTER NUMBER -->
+                <div class="col-md-6 mb-3">
+                    <label class="form-label fw-bold">Register Number</label>
+                    <input type="text"
+                           name="register_no"
+                           class="form-control"
+                           value="{{ student['register_no'] }}"
+                           required>
+                </div>
+
+                <!-- STUDENT NAME -->
+                <div class="col-md-6 mb-3">
+                    <label class="form-label fw-bold">Student Name</label>
+                    <input type="text"
+                           name="student_name"
+                           class="form-control"
+                           value="{{ student['student_name'] }}">
+                </div>
+
+                <!-- FATHER NAME -->
+                <div class="col-md-6 mb-3">
+                    <label class="form-label fw-bold">Father Name</label>
+                    <input type="text"
+                           name="father_name"
+                           class="form-control"
+                           value="{{ student['father_name'] }}">
+                </div>
+
+                <!-- FATHER CONTACT -->
+                <div class="col-md-6 mb-3">
+                    <label class="form-label fw-bold">Father Contact</label>
+                    <input type="text"
+                           name="father_contact"
+                           class="form-control"
+                           value="{{ student['father_contact'] }}">
+                </div>
+
+                <!-- MOTHER NAME -->
+                <div class="col-md-6 mb-3">
+                    <label class="form-label fw-bold">Mother Name</label>
+                    <input type="text"
+                           name="mother_name"
+                           class="form-control"
+                           value="{{ student['mother_name'] }}">
+                </div>
+
+                <!-- MOTHER CONTACT -->
+                <div class="col-md-6 mb-3">
+                    <label class="form-label fw-bold">Mother Contact</label>
+                    <input type="text"
+                           name="mother_contact"
+                           class="form-control"
+                           value="{{ student['mother_contact'] }}">
+                </div>
+
+                <!-- GENDER -->
+                <div class="col-md-6 mb-3">
+                    <label class="form-label fw-bold">Gender</label>
+
+                    <select name="gender" class="form-select">
+
+                        <option value="">Select Gender</option>
+
+                        <option value="Male"
+                            {% if student['gender'] == 'Male' %}selected{% endif %}>
+                            Male
+                        </option>
+
+                        <option value="Female"
+                            {% if student['gender'] == 'Female' %}selected{% endif %}>
+                            Female
+                        </option>
+
+                    </select>
+                </div>
+
+                <!-- DOB -->
+                <div class="col-md-6 mb-3">
+                    <label class="form-label fw-bold">Date of Birth</label>
+
+                    <input type="date"
+                           name="dob"
+                           class="form-control"
+                           value="{{ student['dob'] }}">
+                </div>
+
+                <!-- STUDENT CONTACT -->
+                <div class="col-md-6 mb-3">
+                    <label class="form-label fw-bold">Student Contact</label>
+
+                    <input type="text"
+                           name="student_contact"
+                           class="form-control"
+                           value="{{ student['student_contact'] }}">
+                </div>
+
+                <!-- STUDENT ADDRESS -->
+                <div class="col-md-6 mb-3">
+                    <label class="form-label fw-bold">Student Address</label>
+
+                    <textarea name="student_address"
+                              class="form-control"
+                              rows="3">{{ student['student_address'] }}</textarea>
+                </div>
+
+                <!-- SCHOOL ADDRESS -->
+                <div class="col-md-6 mb-3">
+                    <label class="form-label fw-bold">School Address</label>
+
+                    <textarea name="school_address"
+                              class="form-control"
+                              rows="3">{{ student['school_address'] }}</textarea>
+                </div>
+
+                <!-- TALUK -->
+                <div class="col-md-6 mb-3">
+                    <label class="form-label fw-bold">Taluk</label>
+
+                    <input type="text"
+                           name="taluk"
+                           class="form-control"
+                           value="{{ student['taluk'] }}">
+                </div>
+
+                <!-- DISTRICT -->
+                <div class="col-md-6 mb-3">
+                    <label class="form-label fw-bold">District</label>
+
+                    <input type="text"
+                           name="district"
+                           class="form-control"
+                           value="{{ student['district'] }}">
+                </div>
+
+                <!-- CASTE -->
+                <div class="col-md-6 mb-3">
+                    <label class="form-label fw-bold">Caste</label>
+
+                    <input type="text"
+                           name="caste"
+                           class="form-control"
+                           value="{{ student['caste'] }}">
+                </div>
+
+                <!-- COMMUNITY -->
+                <div class="col-md-6 mb-3">
+                    <label class="form-label fw-bold">Community</label>
+
+                    <input type="text"
+                           name="community"
+                           class="form-control"
+                           value="{{ student['community'] }}">
+                </div>
+
+                <!-- 12TH MARK -->
+                <div class="col-md-6 mb-3">
+                    <label class="form-label fw-bold">12th Mark</label>
+
+                    <input type="text"
+                           name="twelth_mark"
+                           class="form-control"
+                           value="{{ student['twelth_mark'] }}">
+                </div>
+
+                <!-- MEDIUM -->
+                <div class="col-md-6 mb-3">
+                    <label class="form-label fw-bold">
+                        Medium 6 to 12
+                    </label>
+
+                    <select name="medium" class="form-select">
+
+                        <option value="">Select Medium</option>
+
+                        <option value="Tamil"
+                            {% if student['medium'] == 'Tamil' %}selected{% endif %}>
+                            Tamil
+                        </option>
+
+                        <option value="English"
+                            {% if student['medium'] == 'English' %}selected{% endif %}>
+                            English
+                        </option>
+
+                    </select>
+                </div>
+
+                <!-- PUDHUMAI PENN -->
+                <div class="col-md-6 mb-3">
+                    <label class="form-label fw-bold">
+                        Pudhumai Penn Scheme
+                    </label>
+
+                    <select name="pudhumai_penn" class="form-select">
+
+                        <option value="">Select Status</option>
+
+                        <option value="Eligible"
+                            {% if student['pudhumai_penn'] == 'Eligible' %}selected{% endif %}>
+                            Eligible
+                        </option>
+
+                        <option value="Not Eligible"
+                            {% if student['pudhumai_penn'] == 'Not Eligible' %}selected{% endif %}>
+                            Not Eligible
+                        </option>
+
+                    </select>
+                </div>
+
+            </div>
+
+            <hr class="my-4">
+
+            <!-- SAVE BUTTON -->
+            <div class="d-flex justify-content-between align-items-center">
+
+                <a href="{{ url_for('students') }}"
+                   class="btn btn-secondary">
+                    ↩️ Back
+                </a>
+
+                <button type="submit"
+                        class="btn btn-success btn-lg px-5">
+                    💾 SAVE CHANGES
+                </button>
+
+            </div>
+
+        </form>
+
+    </div>
+
+</div>
+```
+
+</div>
+
+</body>
+</html>
