@@ -1,0 +1,49 @@
+body {
+    font-family: Arial, sans-serif;
+    background: #f4f6f8;
+    margin: 0;
+    padding: 40px;
+}
+
+.container {
+    max-width: 800px;
+    margin: auto;
+    text-align: center;
+}
+
+h1 {
+    margin-bottom: 30px;
+}
+
+.card,
+.student-card {
+    background: white;
+    padding: 30px;
+    border-radius: 10px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+}
+
+.student-card {
+    text-align: left;
+}
+
+.student-card p {
+    padding: 10px;
+    border-bottom: 1px solid #ddd;
+}
+
+input {
+    padding: 12px;
+    width: 250px;
+    margin: 10px;
+}
+
+button {
+    padding: 12px 25px;
+    cursor: pointer;
+}
+
+a {
+    display: inline-block;
+    margin-top: 20px;
+}
